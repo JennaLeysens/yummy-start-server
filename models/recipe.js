@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       ingredients: { type: DataTypes.TEXT, allowNull: false },
       method: { type: DataTypes.TEXT, allowNull: false },
       cookingTime: { type: DataTypes.STRING, allowNull: false },
+      likes: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       sequelize,

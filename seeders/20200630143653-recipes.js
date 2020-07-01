@@ -18,6 +18,7 @@ module.exports = {
           cookingTime: "30 minutes",
           createdAt: new Date(),
           updatedAt: new Date(),
+          likes: 5,
           userId: 1,
         },
         {
@@ -32,6 +33,7 @@ module.exports = {
           cookingTime: "10 minutes",
           createdAt: new Date(),
           updatedAt: new Date(),
+          likes: 8,
           userId: 1,
         },
         {
@@ -47,6 +49,7 @@ module.exports = {
           cookingTime: "10 minutes",
           createdAt: new Date(),
           updatedAt: new Date(),
+          likes: 3,
           userId: 1,
         },
       ],
