@@ -1,12 +1,13 @@
 const { Router } = require("express");
 const Recipe = require("../models").recipe;
 const User = require("../models").user;
+const Tag = require("../models").tag;
 const router = new Router();
 
 router.get("/", async (req, res, next) => {
   try {
     const recipes = await Recipe.findAll({
-      include: User,
+      include: [User, Tag],
     });
     res.json(recipes);
   } catch (e) {
@@ -19,7 +20,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const id = parseInt(req.params.id);
     const recipe = await Recipe.findByPk(id, {
-      include: User,
+      include: [User, Tag],
     });
     res.json(recipe);
   } catch (e) {
