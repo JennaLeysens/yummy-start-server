@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const recipeRouter = require("./routers/recipes");
+const tagRouter = require("./routers/tags");
 
 const PORT = 4000;
 const app = express();
@@ -10,5 +11,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/recipes", recipeRouter);
+app.use("/tags", tagRouter);
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
