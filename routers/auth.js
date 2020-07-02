@@ -3,6 +3,7 @@ const { Router } = require("express");
 const { toJWT } = require("../auth/jwt");
 const authMiddleware = require("../auth/middleware");
 const User = require("../models/").user;
+const Recipe = require("../models/").recipe;
 const { SALT_ROUNDS } = require("../config/constants");
 
 const router = new Router();
@@ -66,6 +67,17 @@ router.post("/signup", async (req, res) => {
 router.get("/me", authMiddleware, async (req, res) => {
   delete req.user.dataValues["password"];
   res.status(200).send({ ...req.user.dataValues });
+});
+
+router.patch("/:id", async (req, res, next) => {
+  const id = req.params.id;
+  const recipe = await Recipe.findByPk(id);
+  const likes = recipe.likes;
+  console.log("current", recipe.likes);
+  console.log("likes", likes);
+  await recipe.update({ likes: likes + 1 });
+
+  return res.status(200).send({ recipe });
 });
 
 module.exports = router;
