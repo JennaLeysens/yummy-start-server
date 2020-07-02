@@ -29,4 +29,54 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.patch("/like/:id", async (req, res, next) => {
+  const id = req.params.id;
+  const recipe = await Recipe.findByPk(id);
+  const likes = recipe.likes;
+  console.log("current", recipe.likes);
+  console.log("likes", likes);
+  await recipe.update({ likes: likes + 1 });
+
+  return res.status(200).send({ recipe });
+});
+
+router.post("/", async (req, res, next) => {
+  try {
+    const {
+      title,
+      imageURL,
+      description,
+      ingredients,
+      method,
+      cookingTime,
+    } = req.body;
+    const newRecipe = await Recipe.create({
+      title,
+      imageURL,
+      description,
+      ingredients,
+      method,
+      cookingTime,
+      userId: 2,
+      likes: 0,
+    });
+    if (
+      !title ||
+      !imageURL ||
+      !description ||
+      !ingredients ||
+      !method ||
+      !cookingTime
+    ) {
+      return res
+        .status(400)
+        .send("Please provide a title, imageUrl and a minimumBid");
+    }
+    res.status(201).send({ message: "Recipe added", newRecipe });
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
+
 module.exports = router;
