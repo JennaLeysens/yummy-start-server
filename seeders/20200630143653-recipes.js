@@ -15,7 +15,7 @@ module.exports = {
             "2 x medium tomatoes⁣⁣, 1 x large can of lentils⁣⁣⁣, 250g passata, 500g pasta, 100g baby spinach⁣⁣⁣",
           method:
             "Fry the two diced tomatoes. After a few minutes, add in the passata. Once the passata has warmed up, add in the can of (rinsed) lentils and the baby spinach. Next, add some fresh basil. Add some seasoning (e.g basil, italian herbs, salt and pepper). Cook until the sauce ⁣has thickened. Stir in your cooked pasta and enjoy",
-          cookingTime: "30 minutes",
+          cookingTime: "45",
           createdAt: new Date(),
           updatedAt: new Date(),
           likes: 5,
@@ -30,7 +30,7 @@ module.exports = {
           ingredients:
             "1 x cup of frozen strawberries, ⁣half a frozen banana⁣⁣⁣, 1 tsp sweetener (e.g agave syrup), ⁣⁣3/4 cup of almond milk ⁣⁣⁣⁣⁣⁣",
           method: "Blend ingredients together and add toppings of choice",
-          cookingTime: "10 minutes",
+          cookingTime: "15",
           createdAt: new Date(),
           updatedAt: new Date(),
           likes: 8,
@@ -46,7 +46,7 @@ module.exports = {
             "1 x small can of chickpeas, 2 x tbs of mayonaise, lemon juice, garlic powder, chives",
           method:
             "Rinse the chickpeas and smash them up into pieces. Add the rest of the ingredients and mix together",
-          cookingTime: "10 minutes",
+          cookingTime: "15",
           createdAt: new Date(),
           updatedAt: new Date(),
           likes: 3,

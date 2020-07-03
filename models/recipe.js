@@ -22,7 +22,11 @@ module.exports = (sequelize, DataTypes) => {
       description: { type: DataTypes.TEXT, allowNull: false },
       ingredients: { type: DataTypes.TEXT, allowNull: false },
       method: { type: DataTypes.TEXT, allowNull: false },
-      cookingTime: { type: DataTypes.STRING, allowNull: false },
+      cookingTime: {
+        type: DataTypes.ENUM,
+        values: ["15", "30", "45", "60", "90", "120"],
+        allowNull: false,
+      },
       likes: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
