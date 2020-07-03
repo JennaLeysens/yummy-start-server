@@ -13,9 +13,9 @@ router.post("/login", async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res
-        .status(400)
-        .send({ message: "Please provide both email and password" });
+      return res.status(400).send({
+        message: "Please provide both an emai address and a password",
+      });
     }
 
     const user = await User.findOne({ where: { email } });
@@ -26,7 +26,7 @@ router.post("/login", async (req, res, next) => {
       });
     }
 
-    delete user.dataValues["password"]; // don't send back the password hash
+    delete user.dataValues["password"];
     const token = toJWT({ userId: user.id });
     return res.status(200).send({ token, ...user.dataValues });
   } catch (error) {
@@ -38,7 +38,9 @@ router.post("/login", async (req, res, next) => {
 router.post("/signup", async (req, res) => {
   const { email, password, name } = req.body;
   if (!email || !password || !name) {
-    return res.status(400).send("Please provide an email, password and a name");
+    return res
+      .status(400)
+      .send("Please provide a name, an email address and a password");
   }
 
   try {
