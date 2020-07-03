@@ -68,9 +68,7 @@ router.post("/", async (req, res, next) => {
       !method ||
       !cookingTime
     ) {
-      return res
-        .status(400)
-        .send("Please provide a title, imageUrl and a minimumBid");
+      return res.status(400).send("Please provide all the required elements");
     }
     res.status(201).send({ message: "Recipe added", newRecipe });
   } catch (e) {
