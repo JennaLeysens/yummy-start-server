@@ -13,7 +13,7 @@ module.exports = {
             "Pasta is the ultimate comfort food and this one is easy to throw together on a busy Monday using some pantry staples",
           ingredients: [
             "2 x medium tomatoes",
-            "1 x large can of lentils⁣⁣⁣",
+            "1 x large can of lentils",
             "250g passata",
             "500g pasta",
             "100g baby spinach",
