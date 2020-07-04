@@ -21,9 +21,12 @@ router.post("/login", async (req, res, next) => {
 
     const user = await User.findOne({
       where: { email },
-      include: {
-        model: Favourite,
-      },
+      include: [
+        {
+          model: Favourite,
+        },
+        { model: Recipe },
+      ],
     });
 
     if (!user || !bcrypt.compareSync(password, user.password)) {
@@ -111,8 +114,12 @@ router.post("/", authMiddleware, async (req, res, next) => {
 });
 
 router.get("/me", authMiddleware, async (req, res) => {
+  const favourites = await Favourite.findOne({
+    where: { userId: req.user.id },
+    include: [User],
+  });
   delete req.user.dataValues["password"];
-  res.status(200).send({ ...req.user.dataValues }, { include: Recipe });
+  res.status(200).send({ ...req.user.dataValues, favourites });
 });
 
 module.exports = router;
