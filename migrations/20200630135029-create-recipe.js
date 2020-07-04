@@ -21,14 +21,15 @@ module.exports = {
         allowNull: false,
       },
       ingredients: {
-        type: Sequelize.TEXT,
+        type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false,
       },
       method: {
         type: Sequelize.TEXT,
       },
       cookingTime: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM,
+        values: ["15", "30", "45", "60", "90", "120"],
         allowNull: false,
       },
       createdAt: {

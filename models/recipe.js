@@ -20,9 +20,16 @@ module.exports = (sequelize, DataTypes) => {
       title: { type: DataTypes.STRING, allowNull: false },
       imageURL: { type: DataTypes.STRING, allowNull: false },
       description: { type: DataTypes.TEXT, allowNull: false },
-      ingredients: { type: DataTypes.TEXT, allowNull: false },
+      ingredients: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+      },
       method: { type: DataTypes.TEXT, allowNull: false },
-      cookingTime: { type: DataTypes.STRING, allowNull: false },
+      cookingTime: {
+        type: DataTypes.ENUM,
+        values: ["15", "30", "45", "60", "90", "120"],
+        allowNull: false,
+      },
       likes: { type: DataTypes.INTEGER, allowNull: false },
     },
     {

@@ -66,6 +66,44 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+router.post("/", authMiddleware, async (req, res, next) => {
+  try {
+    const user = req.user;
+    const {
+      title,
+      imageURL,
+      description,
+      ingredients,
+      method,
+      cookingTime,
+    } = req.body;
+    const newRecipe = await Recipe.create({
+      title,
+      imageURL,
+      description,
+      ingredients,
+      method,
+      cookingTime,
+      userId: user.id,
+      likes: 0,
+    });
+    if (
+      !title ||
+      !imageURL ||
+      !description ||
+      !ingredients ||
+      !method ||
+      !cookingTime
+    ) {
+      return res.status(400).send("Please provide all the required elements");
+    }
+    res.status(201).send({ message: "Recipe added", newRecipe });
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
+
 router.get("/me", authMiddleware, async (req, res) => {
   delete req.user.dataValues["password"];
   res.status(200).send({ ...req.user.dataValues });
