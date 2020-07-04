@@ -4,6 +4,7 @@ const { toJWT } = require("../auth/jwt");
 const authMiddleware = require("../auth/middleware");
 const User = require("../models/").user;
 const Recipe = require("../models/").recipe;
+const Favourite = require("../models/").favourite;
 const { SALT_ROUNDS } = require("../config/constants");
 
 const router = new Router();
@@ -18,7 +19,12 @@ router.post("/login", async (req, res, next) => {
       });
     }
 
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({
+      where: { email },
+      include: {
+        model: Favourite,
+      },
+    });
 
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return res.status(400).send({
@@ -106,7 +112,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
 
 router.get("/me", authMiddleware, async (req, res) => {
   delete req.user.dataValues["password"];
-  res.status(200).send({ ...req.user.dataValues });
+  res.status(200).send({ ...req.user.dataValues }, { include: Recipe });
 });
 
 module.exports = router;
