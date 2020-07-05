@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   favourite.init(
     {
-      userId: DataTypes.INTEGER,
-      recipeId: DataTypes.INTEGER,
+      userId: { type: DataTypes.INTEGER, allowNull: false },
+      recipeId: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       sequelize,

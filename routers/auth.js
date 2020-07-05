@@ -113,8 +113,28 @@ router.post("/", authMiddleware, async (req, res, next) => {
   }
 });
 
+router.post("/newfav", authMiddleware, async (req, res, next) => {
+  try {
+    const user = req.user;
+    const { recipeId } = req.body;
+    console.log("????", typeof req.body);
+    const newFavourite = await Favourite.create({
+      userId: user.id,
+      recipeId,
+    });
+    console.log(newFavourite);
+    if (!recipeId) {
+      return res.status(400).send("Please provide all the required elements");
+    }
+    res.status(201).send({ message: "Favourite added", newFavourite });
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
+
 router.get("/me", authMiddleware, async (req, res) => {
-  const favourites = await Favourite.findOne({
+  const favourites = await Favourite.findAll({
     where: { userId: req.user.id },
     include: [User],
   });

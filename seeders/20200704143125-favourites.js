@@ -6,6 +6,7 @@ module.exports = {
       { userId: 2, recipeId: 1, createdAt: new Date(), updatedAt: new Date() },
       { userId: 2, recipeId: 2, createdAt: new Date(), updatedAt: new Date() },
       { userId: 1, recipeId: 1, createdAt: new Date(), updatedAt: new Date() },
+      { userId: 1, recipeId: 3, createdAt: new Date(), updatedAt: new Date() },
     ]);
   },
 

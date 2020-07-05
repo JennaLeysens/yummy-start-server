@@ -1,30 +1,26 @@
-'use strict';
+"use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('favourites', {
+    await queryInterface.createTable("favourites", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
-      userId: {
-        type: Sequelize.INTEGER
-      },
-      recipeId: {
-        type: Sequelize.INTEGER
-      },
+      userId: { type: Sequelize.INTEGER, allowNull: false },
+      recipeId: { type: Sequelize.INTEGER, allowNull: false },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('favourites');
-  }
+    await queryInterface.dropTable("favourites");
+  },
 };

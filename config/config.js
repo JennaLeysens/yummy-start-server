@@ -5,6 +5,7 @@ module.exports = {
     url: process.env.DATABASE_DEV,
     dialect: "postgres",
     operatorsAliases: "0",
+    logging: true,
   },
   test: {
     username: "root",
