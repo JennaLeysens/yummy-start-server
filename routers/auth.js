@@ -4,6 +4,7 @@ const { toJWT } = require("../auth/jwt");
 const authMiddleware = require("../auth/middleware");
 const User = require("../models/").user;
 const Recipe = require("../models/").recipe;
+const Favourite = require("../models/").favourite;
 const { SALT_ROUNDS } = require("../config/constants");
 
 const router = new Router();
@@ -18,7 +19,15 @@ router.post("/login", async (req, res, next) => {
       });
     }
 
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({
+      where: { email },
+      include: [
+        {
+          model: Favourite,
+        },
+        { model: Recipe },
+      ],
+    });
 
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return res.status(400).send({
@@ -104,9 +113,33 @@ router.post("/", authMiddleware, async (req, res, next) => {
   }
 });
 
+router.post("/newfav", authMiddleware, async (req, res, next) => {
+  try {
+    const user = req.user;
+    const { recipeId } = req.body;
+    console.log("????", typeof req.body);
+    const newFavourite = await Favourite.create({
+      userId: user.id,
+      recipeId,
+    });
+    console.log(newFavourite);
+    if (!recipeId) {
+      return res.status(400).send("Please provide all the required elements");
+    }
+    res.status(201).send({ message: "Favourite added", newFavourite });
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
+
 router.get("/me", authMiddleware, async (req, res) => {
+  const favourites = await Favourite.findAll({
+    where: { userId: req.user.id },
+    include: [User],
+  });
   delete req.user.dataValues["password"];
-  res.status(200).send({ ...req.user.dataValues });
+  res.status(200).send({ ...req.user.dataValues, favourites });
 });
 
 module.exports = router;
