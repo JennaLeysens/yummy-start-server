@@ -6,6 +6,7 @@ const User = require("../models/").user;
 const Recipe = require("../models/").recipe;
 const Favourite = require("../models/").favourite;
 const { SALT_ROUNDS } = require("../config/constants");
+const { reset } = require("nodemon");
 
 const router = new Router();
 
@@ -127,6 +128,18 @@ router.post("/newfav", authMiddleware, async (req, res, next) => {
       return res.status(400).send("Please provide all the required elements");
     }
     res.status(201).send({ message: "Favourite added", newFavourite });
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
+
+router.delete("/", authMiddleware, async (req, res) => {
+  try {
+    const { id } = req.body;
+    const favourite = await Favourite.findByPk(id);
+    const deleteFav = await favourite.destroy();
+    res.status(201).send({ message: "Favourite DELETED", favourite });
   } catch (e) {
     console.log(e.message);
     next(e);
