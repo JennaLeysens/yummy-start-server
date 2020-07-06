@@ -22,12 +22,7 @@ router.post("/login", async (req, res, next) => {
 
     const user = await User.findOne({
       where: { email },
-      include: [
-        {
-          model: Favourite,
-        },
-        { model: Recipe },
-      ],
+      include: [{ model: Recipe, as: "userfavourites" }],
     });
 
     if (!user || !bcrypt.compareSync(password, user.password)) {
@@ -134,9 +129,9 @@ router.post("/newfav", authMiddleware, async (req, res, next) => {
   }
 });
 
-router.delete("/", authMiddleware, async (req, res) => {
+router.delete("/favourite/:id", authMiddleware, async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
     const favourite = await Favourite.findByPk(id);
     const deleteFav = await favourite.destroy();
     res.status(201).send({ message: "Favourite DELETED", favourite });
