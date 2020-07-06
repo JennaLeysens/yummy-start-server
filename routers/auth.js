@@ -6,6 +6,7 @@ const User = require("../models/").user;
 const Recipe = require("../models/").recipe;
 const Favourite = require("../models/").favourite;
 const { SALT_ROUNDS } = require("../config/constants");
+const { reset } = require("nodemon");
 
 const router = new Router();
 
@@ -21,12 +22,7 @@ router.post("/login", async (req, res, next) => {
 
     const user = await User.findOne({
       where: { email },
-      include: [
-        {
-          model: Favourite,
-        },
-        { model: Recipe },
-      ],
+      include: [{ model: Recipe }, { model: Favourite, as: "userFavourites" }],
     });
 
     if (!user || !bcrypt.compareSync(password, user.password)) {
@@ -133,13 +129,25 @@ router.post("/newfav", authMiddleware, async (req, res, next) => {
   }
 });
 
+router.delete("/favourite/:id", authMiddleware, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const favourite = await Favourite.findByPk(id);
+    const deleteFav = await favourite.destroy();
+    res.status(201).send({ message: "Favourite DELETED", favourite });
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
+
 router.get("/me", authMiddleware, async (req, res) => {
-  const favourites = await Favourite.findAll({
+  const userFavourites = await Favourite.findAll({
     where: { userId: req.user.id },
     include: [User],
   });
   delete req.user.dataValues["password"];
-  res.status(200).send({ ...req.user.dataValues, favourites });
+  res.status(200).send({ ...req.user.dataValues, userFavourites });
 });
 
 module.exports = router;

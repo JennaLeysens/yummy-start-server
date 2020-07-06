@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       favourite.belongsTo(models.user);
+      favourite.belongsTo(models.recipe);
     }
   }
   favourite.init(
@@ -16,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       userId: { type: DataTypes.INTEGER, allowNull: false },
       recipeId: { type: DataTypes.INTEGER, allowNull: false },
     },
+
     {
       sequelize,
       modelName: "favourite",

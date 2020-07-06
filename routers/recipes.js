@@ -2,6 +2,7 @@ const { Router } = require("express");
 const Recipe = require("../models").recipe;
 const User = require("../models").user;
 const Tag = require("../models").tag;
+const Favourite = require("../models").favourite;
 const router = new Router();
 
 router.get("/", async (req, res, next) => {

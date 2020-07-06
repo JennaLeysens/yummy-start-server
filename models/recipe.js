@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
         through: "recipeTags",
         foreignKey: "recipeId",
       });
+      recipe.belongsToMany(models.user, {
+        through: "favourites",
+        foreignKey: "recipeId",
+      });
     }
   }
   recipe.init(
