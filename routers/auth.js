@@ -5,6 +5,7 @@ const authMiddleware = require("../auth/middleware");
 const User = require("../models/").user;
 const Recipe = require("../models/").recipe;
 const Favourite = require("../models/").favourite;
+const RecipeTag = require("../models/").recipeTag;
 const { SALT_ROUNDS } = require("../config/constants");
 const { reset } = require("nodemon");
 
@@ -74,6 +75,7 @@ router.post("/signup", async (req, res) => {
 router.post("/", authMiddleware, async (req, res, next) => {
   try {
     const user = req.user;
+    console.log(user);
     const {
       title,
       imageURL,
@@ -82,16 +84,24 @@ router.post("/", authMiddleware, async (req, res, next) => {
       method,
       cookingTime,
     } = req.body;
+    console.log(req.body);
+    console.log("user?", user.id);
     const newRecipe = await Recipe.create({
       title,
       imageURL,
       description,
-      ingredients,
+      ingredients: [ingredients],
       method,
       cookingTime,
       userId: user.id,
       likes: 0,
     });
+    const { tagIds } = req.body;
+    const newRecipeTag = await RecipeTag.bulkCreate(
+      tagIds.map((tagId) => {
+        return { recipeId: newRecipe.id, tagId };
+      })
+    );
     if (
       !title ||
       !imageURL ||
@@ -102,7 +112,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
     ) {
       return res.status(400).send("Please provide all the required elements");
     }
-    res.status(201).send({ message: "Recipe added", newRecipe });
+    res.status(201).send({ message: "Recipe added", newRecipe, newRecipeTag });
   } catch (e) {
     console.log(e.message);
     next(e);
