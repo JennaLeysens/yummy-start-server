@@ -83,6 +83,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
       ingredients,
       method,
       cookingTime,
+      servings,
     } = req.body;
     console.log(req.body);
     console.log("user?", user.id);
@@ -93,6 +94,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
       ingredients: [ingredients],
       method,
       cookingTime,
+      servings,
       userId: user.id,
       likes: 0,
     });

@@ -24,6 +24,16 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        title: "Dairy free",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        title: "Gluten free",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 

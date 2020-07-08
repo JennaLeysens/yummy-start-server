@@ -25,6 +25,7 @@ module.exports = {
           updatedAt: new Date(),
           likes: 5,
           userId: 1,
+          servings: "2",
         },
         {
           title: "Strawberry Milkshake Smoothie bowl",
@@ -44,6 +45,7 @@ module.exports = {
           updatedAt: new Date(),
           likes: 8,
           userId: 1,
+          servings: "1",
         },
         {
           title: "Chickpea mayo filling",
@@ -65,6 +67,7 @@ module.exports = {
           updatedAt: new Date(),
           likes: 3,
           userId: 1,
+          servings: "2",
         },
       ],
       {}
