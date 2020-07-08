@@ -42,7 +42,7 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { email, password, name } = req.body;
+  const { email, password, name, imageurl } = req.body;
   if (!email || !password || !name) {
     return res
       .status(400)
@@ -54,6 +54,7 @@ router.post("/signup", async (req, res) => {
       email,
       password: bcrypt.hashSync(password, SALT_ROUNDS),
       name,
+      imageurl,
     });
 
     delete newUser.dataValues["password"];
