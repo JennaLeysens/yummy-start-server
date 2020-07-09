@@ -7,7 +7,6 @@ const Recipe = require("../models/").recipe;
 const Favourite = require("../models/").favourite;
 const RecipeTag = require("../models/").recipeTag;
 const { SALT_ROUNDS } = require("../config/constants");
-const { reset } = require("nodemon");
 
 const router = new Router();
 
