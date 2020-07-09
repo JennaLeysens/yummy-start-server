@@ -34,6 +34,16 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        title: "Dessert",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        title: "Snack",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 

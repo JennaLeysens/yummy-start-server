@@ -17,7 +17,7 @@ router.post("/login", async (req, res, next) => {
 
     if (!email || !password) {
       return res.status(400).send({
-        message: "Please provide both an emai address and a password",
+        message: "Please provide both an email address and a password",
       });
     }
 
@@ -28,7 +28,7 @@ router.post("/login", async (req, res, next) => {
 
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return res.status(400).send({
-        message: "User with that email not found or password incorrect",
+        message: "Incorrect combination of email address and password",
       });
     }
 
@@ -44,9 +44,9 @@ router.post("/login", async (req, res, next) => {
 router.post("/signup", async (req, res) => {
   const { email, password, name, imageurl } = req.body;
   if (!email || !password || !name) {
-    return res
-      .status(400)
-      .send("Please provide a name, an email address and a password");
+    return res.status(400).send({
+      message: "Please provide a name, an email address and a password",
+    });
   }
 
   try {
@@ -92,7 +92,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
       title,
       imageURL,
       description,
-      ingredients: [ingredients],
+      ingredients,
       method,
       cookingTime,
       servings,
@@ -111,9 +111,13 @@ router.post("/", authMiddleware, async (req, res, next) => {
       !description ||
       !ingredients ||
       !method ||
-      !cookingTime
+      !cookingTime ||
+      !servings ||
+      !tagIds
     ) {
-      return res.status(400).send("Please provide all the required elements");
+      return res
+        .status(400)
+        .send({ message: "Please complete all the fields to post a recipe" });
     }
     res.status(201).send({ message: "Recipe added", newRecipe, newRecipeTag });
   } catch (e) {

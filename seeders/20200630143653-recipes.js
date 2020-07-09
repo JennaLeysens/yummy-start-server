@@ -19,7 +19,7 @@ module.exports = {
             "100g baby spinach",
           ],
           method:
-            "Fry the two diced tomatoes. After a few minutes, add in the passata. Once the passata has warmed up, add in the can of (rinsed) lentils and the baby spinach. Next, add some fresh basil. Add some seasoning (e.g basil, italian herbs, salt and pepper). Cook until the sauce ⁣has thickened. Stir in your cooked pasta and enjoy",
+            "Fry the two diced tomatoes. After a few minutes, add in the passata. Once the passata has warmed up, add in the can of (rinsed) lentils and the baby spinach. Next, add some fresh basil. Add some seasoning (basil, italian herbs, salt and pepper). Cook until the sauce ⁣has thickened. Stir in your cooked pasta and enjoy",
           cookingTime: "45",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -28,7 +28,7 @@ module.exports = {
           servings: "2",
         },
         {
-          title: "Strawberry Milkshake Smoothie bowl",
+          title: "Strawberry milkshake smoothie bowl",
           imageURL:
             "https://scontent-amt2-1.cdninstagram.com/v/t51.2885-15/e35/p1080x1080/93988735_3113805988644148_650732422009060151_n.jpg?_nc_ht=scontent-amt2-1.cdninstagram.com&_nc_cat=104&_nc_ohc=ZBB_JhUdqr4AX_tAf8G&oh=06809009029b11549cad6a2a260da082&oe=5F23BC48",
           description:
@@ -68,6 +68,63 @@ module.exports = {
           likes: 3,
           userId: 1,
           servings: "2",
+        },
+        {
+          title: "Baked pumpkin falafel",
+          imageURL:
+            "https://scontent-ams4-1.cdninstagram.com/v/t51.2885-15/e35/p1080x1080/93816462_225534651875098_575068455237016509_n.jpg?_nc_ht=scontent-ams4-1.cdninstagram.com&_nc_cat=110&_nc_ohc=rSLFaFzMEBoAX-g-lWg&oh=8e5b9b232b26ea371f77743654107379&oe=5F2F4AEF",
+          description: "A great source of protein for salads, wraps or tacos",
+          ingredients: [
+            "1 cup pumpkin puree",
+            "½ cup of chickpeas⁣⁣",
+            "3 tbs of flour⁣⁣",
+            "1 clove of garlic",
+            "Sesame seeds⁣⁣",
+          ],
+          method:
+            "Purée the pumpkin and chickpeas with a stick blender or in a blender, mix in the garlic (crushed) and spices and the flour. Refrigerate the mixture for at least three hours until the mixture is quite firm. Form small falafels and dip into sesame seeds to coat them all around. Place the falafels on a baking tray with wax paper and bake at 200° C for 20 minutes, turning the falafels over at 10 minutes to bake each side",
+          cookingTime: "45",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          likes: 5,
+          userId: 2,
+          servings: "4",
+        },
+        {
+          title: "Berry chia jam",
+          imageURL:
+            "https://scontent-amt2-1.cdninstagram.com/v/t51.2885-15/e35/p1080x1080/93482718_109437867235226_159961100740511_n.jpg?_nc_ht=scontent-amt2-1.cdninstagram.com&_nc_cat=102&_nc_ohc=nMo4HPDDKygAX8PhRFd&oh=8c8de5472fb50c629ab0aaccff2e4bbe&oe=5F313861",
+          description: "Like jam but refined sugar free and with extra protein",
+          ingredients: ["2 x tbsp of chia seeds", "2 cups of frozen berries"],
+          method:
+            "Bring the fruit to the boil for about 10mins. Then add the chia seeds and turn down the heat but let it cook for another 10min or so. Then let it cool so that it thickens and refrigerate it before serving",
+          cookingTime: "15",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          likes: 2,
+          userId: 2,
+          servings: "8",
+        },
+        {
+          title: "Roast pumpkin and butternut soup",
+          imageURL:
+            "https://scontent-ams4-1.cdninstagram.com/v/t51.2885-15/e35/42003303_313816652504104_8121410583518381048_n.jpg?_nc_ht=scontent-ams4-1.cdninstagram.com&_nc_cat=104&_nc_ohc=NUUJoXd9ffoAX9sTPJJ&oh=e668a1a2ccbeef41629faaf524d0b18d&oe=5F32180C",
+          description: "Like jam but refined sugar free and with extra protein",
+          ingredients: [
+            "1/2 a butternut⁣",
+            "1/2 a pumpkin",
+            "1/2 cup of coconut milk⁣",
+            "1/2 an onion",
+            "Seasoning",
+          ],
+          method:
+            "Roast the butternut and pumpkin until it’s all cooked, adding onion towards the end. Add the roasted veggies to a pot with the coconut milk and some hot water. Blend with a stick blender until smooth and add seasoning to taste⁣",
+          cookingTime: "60",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          likes: 10,
+          userId: 1,
+          servings: "4",
         },
       ],
       {}
