@@ -21,7 +21,7 @@ module.exports = {
       { recipeId: 4, tagId: 4, createdAt: new Date(), updatedAt: new Date() },
       { recipeId: 4, tagId: 5, createdAt: new Date(), updatedAt: new Date() },
       { recipeId: 5, tagId: 1, createdAt: new Date(), updatedAt: new Date() },
-      { recipeId: 5, tagId: 5, createdAt: new Date(), updatedAt: new Date() },
+      { recipeId: 5, tagId: 2, createdAt: new Date(), updatedAt: new Date() },
       { recipeId: 5, tagId: 3, createdAt: new Date(), updatedAt: new Date() },
       { recipeId: 5, tagId: 8, createdAt: new Date(), updatedAt: new Date() },
       { recipeId: 5, tagId: 9, createdAt: new Date(), updatedAt: new Date() },
