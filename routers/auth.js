@@ -157,13 +157,35 @@ router.delete("/favourite/:id", authMiddleware, async (req, res) => {
   }
 });
 
+router.delete("/deleterecipe/:id", authMiddleware, async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const user = req.user;
+    const recipe = await Recipe.findByPk(id);
+    console.log(recipe);
+    if (user.id === recipe.userId) {
+      const deletedRecipe = await recipe.destroy();
+      res.status(201).send({ message: "Recipe deleted", deletedRecipe });
+    } else {
+      return res
+        .status(400)
+        .send("You are not authorized to delete this recipe");
+    }
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
+
 router.get("/me", authMiddleware, async (req, res) => {
+  const recipes = await Recipe.findAll({ where: { userId: req.user.id } });
   const userFavourites = await Favourite.findAll({
     where: { userId: req.user.id },
     include: [User],
   });
   delete req.user.dataValues["password"];
-  res.status(200).send({ ...req.user.dataValues, userFavourites });
+  res.status(200).send({ ...req.user.dataValues, userFavourites, recipes });
 });
 
 module.exports = router;
