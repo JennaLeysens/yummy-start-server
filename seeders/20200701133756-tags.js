@@ -40,7 +40,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        title: "Snack",
+        title: "Snacks",
         createdAt: new Date(),
         updatedAt: new Date(),
       },

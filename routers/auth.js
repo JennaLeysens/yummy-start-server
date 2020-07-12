@@ -22,9 +22,9 @@ router.post("/login", async (req, res, next) => {
 
     const user = await User.findOne({
       where: { email },
-      include: [{ model: Recipe }, { model: Favourite, as: "userFavourites" }],
+      include: [{ model: Favourite, as: "userFavourites" }],
     });
-
+    const recipes = await Recipe.findAll({ where: { userId: user.id } });
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return res.status(400).send({
         message: "Incorrect combination of email address and password",
@@ -33,7 +33,7 @@ router.post("/login", async (req, res, next) => {
 
     delete user.dataValues["password"];
     const token = toJWT({ userId: user.id });
-    return res.status(200).send({ token, ...user.dataValues });
+    return res.status(200).send({ token, ...user.dataValues, recipes });
   } catch (error) {
     console.log(error);
     return res.status(400).send({ message: "Something went wrong, sorry" });
@@ -157,13 +157,35 @@ router.delete("/favourite/:id", authMiddleware, async (req, res) => {
   }
 });
 
+router.delete("/deleterecipe/:id", authMiddleware, async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const user = req.user;
+    const recipe = await Recipe.findByPk(id);
+    console.log(recipe);
+    if (user.id === recipe.userId) {
+      const deletedRecipe = await recipe.destroy();
+      res.status(201).send({ message: "Recipe deleted", recipe });
+    } else {
+      return res
+        .status(400)
+        .send("You are not authorized to delete this recipe");
+    }
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
+
 router.get("/me", authMiddleware, async (req, res) => {
+  const recipes = await Recipe.findAll({ where: { userId: req.user.id } });
   const userFavourites = await Favourite.findAll({
     where: { userId: req.user.id },
     include: [User],
   });
   delete req.user.dataValues["password"];
-  res.status(200).send({ ...req.user.dataValues, userFavourites });
+  res.status(200).send({ ...req.user.dataValues, userFavourites, recipes });
 });
 
 module.exports = router;

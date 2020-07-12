@@ -23,6 +23,11 @@ router.get("/:id", async (req, res, next) => {
     const recipe = await Recipe.findByPk(id, {
       include: [User, Tag],
     });
+    if (!recipe) {
+      return res.status(401).send({
+        message: "Recipe not found",
+      });
+    }
     res.json(recipe);
   } catch (e) {
     console.log(e.message);
