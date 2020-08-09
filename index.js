@@ -6,6 +6,7 @@ const authRouter = require("./routers/auth");
 const authMiddleWare = require("./auth/middleware");
 const recipeRouter = require("./routers/recipes");
 const tagRouter = require("./routers/tags");
+const favRouter = require("./routers/favourites");
 const app = express();
 
 const bodyParserMiddleWare = express.json();
@@ -21,6 +22,7 @@ if (process.env.DELAY) {
 app.use("/", authRouter);
 app.use("/recipes", recipeRouter);
 app.use("/tags", tagRouter);
+app.use("/favourites", favRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
