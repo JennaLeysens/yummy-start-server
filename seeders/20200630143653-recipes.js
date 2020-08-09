@@ -8,7 +8,7 @@ module.exports = {
         {
           title: "Easy and hearty lentil bolognese",
           imageURL:
-            "https://res.cloudinary.com/yummystart/image/upload/v1596972678/B47A0F38-080E-44F2-9C83-8154E883C1F2_w57zvl.jpg",
+            "https://res.cloudinary.com/yummystart/image/upload/v1596975136/WhatsApp_Image_2020-08-09_at_14.10.34_q5kzpc.jpg",
           description:
             "Pasta is the ultimate comfort food and this one is easy to throw together on a busy Monday using some pantry staples",
           ingredients: [
@@ -72,7 +72,7 @@ module.exports = {
         {
           title: "Baked pumpkin falafel",
           imageURL:
-            "https://res.cloudinary.com/yummystart/image/upload/v1596973349/IMG_0332_vhrbe1.jpg",
+            "https://res.cloudinary.com/yummystart/image/upload/v1596975136/WhatsApp_Image_2020-08-09_at_14.10.52_ntadt2.jpg",
           description: "A great source of protein for salads, wraps or tacos",
           ingredients: [
             "1 cup pumpkin puree",
