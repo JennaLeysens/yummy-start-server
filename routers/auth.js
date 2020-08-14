@@ -78,6 +78,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
     console.log(user);
     const {
       title,
+      imageURL,
       description,
       ingredients,
       method,
@@ -88,6 +89,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
     console.log("user?", user.id);
     const newRecipe = await Recipe.create({
       title,
+      imageURL,
       description,
       ingredients,
       method,
@@ -104,6 +106,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
     );
     if (
       !title ||
+      !imageURL ||
       !description ||
       !ingredients ||
       !method ||
