@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   recipe.init(
     {
       title: { type: DataTypes.STRING, allowNull: false },
-      imageURL: { type: DataTypes.STRING, allowNull: false },
+      imageURL: { type: DataTypes.TEXT, allowNull: false },
       description: { type: DataTypes.TEXT, allowNull: false },
       ingredients: {
         type: DataTypes.ARRAY(DataTypes.STRING),
