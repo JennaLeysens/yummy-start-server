@@ -75,7 +75,6 @@ router.post("/signup", async (req, res) => {
 router.post("/", authMiddleware, async (req, res, next) => {
   try {
     const user = req.user;
-    console.log(user);
     const {
       title,
       imageURL,
@@ -85,8 +84,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
       cookingTime,
       servings,
     } = req.body;
-    console.log(req.body);
-    console.log("user?", user.id);
+
     const newRecipe = await Recipe.create({
       title,
       imageURL,
@@ -129,12 +127,12 @@ router.post("/newfav", authMiddleware, async (req, res, next) => {
   try {
     const user = req.user;
     const { recipeId } = req.body;
-    console.log("????", typeof req.body);
+
     const newFavourite = await Favourite.create({
       userId: user.id,
       recipeId,
     });
-    console.log(newFavourite);
+
     if (!recipeId) {
       return res.status(400).send("Please provide all the required elements");
     }
@@ -160,10 +158,10 @@ router.delete("/favourite/:id", authMiddleware, async (req, res) => {
 router.delete("/deleterecipe/:id", authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
+
     const user = req.user;
     const recipe = await Recipe.findByPk(id);
-    console.log(recipe);
+
     if (user.id === recipe.userId) {
       const deletedRecipe = await recipe.destroy();
       res.status(201).send({ message: "Recipe deleted", recipe });
