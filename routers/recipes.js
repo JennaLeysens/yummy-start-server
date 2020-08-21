@@ -39,8 +39,6 @@ router.patch("/like/:id", async (req, res, next) => {
   const id = req.params.id;
   const recipe = await Recipe.findByPk(id);
   const likes = recipe.likes;
-  console.log("current", recipe.likes);
-  console.log("likes", likes);
   await recipe.update({ likes: likes + 1 });
 
   return res.status(200).send({ recipe });
